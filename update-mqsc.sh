@@ -20,21 +20,29 @@ export MQSCTOPDIR=$2
 export HASHDIR=$3
 
 if [ "$QMNAME" == "" ]; then
-   echo "No QM name specified - runmqsc may not run unless a default QM is available"
+   echo "update-mqsc: No QM name specified - runmqsc may not run unless a default QM is available"
 fi 
 if [ "$MQSCTOPDIR" == "" ]; then
    export MQSCTOPDIR=/dynamic-mqsc
-   echo "No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
+   echo "update-mqsc: No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
 fi 
 if [ "$HASHDIR" == "" ]; then
    export HASHDIR=/mnt/mqm/data/mqsc-hashes/${QMNAME}
-   echo "No hash directory specified - will use ${HASHDIR} as a default"
+   echo "update-mqsc: No hash directory specified - will use ${HASHDIR} as a default"
 fi 
 mkdir -p ${HASHDIR}
 
 while true; do
     # Scan for MQSC files every time, as new ones may have been added
-    MQSCFILES=$(find ${MQSCTOPDIR}/ -type f -name "*.mqsc")
+    #
+    # Need to exclude the dot directories:
+    # /dynamic-mqsc/example-mqsc-files/..2025_01_18_02_44_55.1696189690/example2.mqsc
+    # /dynamic-mqsc/example-mqsc-files/..2025_01_18_02_44_55.1696189690/example1.mqsc
+    # /dynamic-mqsc/example-mqsc-files/example2.mqsc
+    # /dynamic-mqsc/example-mqsc-files/example1.mqsc
+    #
+    # so we use -not -path '*/.*' to get find to do the job for us.
+    MQSCFILES=$(find ${MQSCTOPDIR}/ -not -path '*/.*' -name "*.mqsc")
 
     for mqscFile in $MQSCFILES; do
 	# Make sure there's at least one match
@@ -48,11 +56,11 @@ while true; do
 	previousHash=$(cat ${hashFullPath} 2>/dev/null)
 	#echo "Found MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	if [ "$previousHash" == "" ]; then
-	   echo "Found new MQSC file ${mqscFile} ${hashFullPath} ${currentHash}"
+	   echo "update-mqsc: Found new MQSC file ${mqscFile} ${hashFullPath} ${currentHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
 	elif [ "$previousHash" != "$currentHash" ]; then
-	   echo "Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
+	   echo "update-mqsc: Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
 	fi

@@ -1,0 +1,2 @@
+
+DEFINE SERVICE(APPLY_MQSC) CONTROL(QMGR) SERVTYPE(SERVER) STARTCMD('/mqsc-script/update-mqsc.sh') STARTARG('test') STOPCMD('/mqsc-script/dummy-stop.sh') STOPARG('') STDOUT('/proc/1/fd/1') STDERR('/proc/1/fd/2') REPLACE
