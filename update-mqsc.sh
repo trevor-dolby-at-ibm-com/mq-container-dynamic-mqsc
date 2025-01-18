@@ -33,6 +33,7 @@ fi
 echo "update-mqsc `date '+%Y%m%d%H%M%S'`: starting; QM name $QMNAME + MQSC top directory ${MQSCTOPDIR} + hash directory ${HASHDIR}"
 mkdir -p ${HASHDIR}
 
+firstTimeThrough=1
 while true; do
     # Scan for MQSC files every time, as new ones may have been added
     #
@@ -64,7 +65,12 @@ while true; do
 	   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
+	else
+	    if [ "$firstTimeThrough" == "1" ]; then
+		echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Unchanged MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
+	    fi
 	fi
     done
+    firstTimeThrough=0
     sleep 5
 done
