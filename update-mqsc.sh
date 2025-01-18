@@ -20,16 +20,17 @@ export MQSCTOPDIR=$2
 export HASHDIR=$3
 
 if [ "$QMNAME" == "" ]; then
-   echo "update-mqsc: No QM name specified - runmqsc may not run unless a default QM is available"
+   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: No QM name specified - runmqsc may not run unless a default QM is available"
 fi 
 if [ "$MQSCTOPDIR" == "" ]; then
    export MQSCTOPDIR=/dynamic-mqsc
-   echo "update-mqsc: No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
+   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
 fi 
 if [ "$HASHDIR" == "" ]; then
    export HASHDIR=/mnt/mqm/data/mqsc-hashes/${QMNAME}
-   echo "update-mqsc: No hash directory specified - will use ${HASHDIR} as a default"
+   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: No hash directory specified - will use ${HASHDIR} as a default"
 fi 
+echo "update-mqsc `date '+%Y%m%d%H%M%S'`: starting; QM name $QMNAME + MQSC top directory ${MQSCTOPDIR} + hash directory ${HASHDIR}"
 mkdir -p ${HASHDIR}
 
 while true; do
@@ -56,11 +57,11 @@ while true; do
 	previousHash=$(cat ${hashFullPath} 2>/dev/null)
 	#echo "Found MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	if [ "$previousHash" == "" ]; then
-	   echo "update-mqsc: Found new MQSC file ${mqscFile} ${hashFullPath} ${currentHash}"
+	   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Found new MQSC file ${mqscFile} ${hashFullPath} ${currentHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
 	elif [ "$previousHash" != "$currentHash" ]; then
-	   echo "update-mqsc: Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
+	   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
 	fi
