@@ -95,11 +95,15 @@ if [ "$MQSCTOPDIR" == "" ]; then
    echo "`${DATE_COMMAND}` $0: No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
 fi 
 if [ "$HASHDIR" == "" ]; then
-   export HASHDIR=/mnt/mqm/data/mqsc-hashes/${QMNAME}
+    export HASHDIR=/mnt/mqm/data/mqsc-hashes/${QMNAME}
+    # The mkdir for the QM directory below doesn't seem to use the 2775 mode
+    # when creating intermediate directories, so we create and chmod here.
+    mkdir -p /mnt/mqm/data/mqsc-hashes
+    chmod 2775 /mnt/mqm/data/mqsc-hashes
    echo "`${DATE_COMMAND}` $0: No hash directory specified - will use ${HASHDIR} as a default"
 fi 
 echo "`${DATE_COMMAND}` $0: starting; QM name $QMNAME + MQSC top directory ${MQSCTOPDIR} + hash directory ${HASHDIR}"
-mkdir -p ${HASHDIR}
+mkdir --mode=2775 -p ${HASHDIR}
 
 firstTimeThrough=1
 while true; do
@@ -133,6 +137,7 @@ while true; do
 	       echo "`${DATE_COMMAND}` $0: ERROR: runmqsc did not complete successfully; examine previous messages for details"
 	   fi
 	   echo ${currentHash} > ${hashFullPath}
+	   chmod 664 ${hashFullPath}
 	elif [ "$previousHash" != "$currentHash" ]; then
 	   echo "`${DATE_COMMAND}` $0: Found changed MQSC file ${mqscFile} (hash info ${hashFullPath} ${currentHash} ${previousHash})"
 	   echo "`${DATE_COMMAND}` $0: runmqsc output:"
@@ -141,6 +146,7 @@ while true; do
 	       echo "`${DATE_COMMAND}` $0: ERROR: runmqsc did not complete successfully; examine previous messages for details"
 	   fi
 	   echo ${currentHash} > ${hashFullPath}
+	   chmod 664 ${hashFullPath}
 	else
 	    if [ "$firstTimeThrough" == "1" ]; then
 		echo "`${DATE_COMMAND}` $0: Unchanged MQSC file ${mqscFile} (hash info ${hashFullPath} ${currentHash} ${previousHash})"
