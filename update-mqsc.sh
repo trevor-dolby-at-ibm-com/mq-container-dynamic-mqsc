@@ -19,18 +19,21 @@ export QMNAME=$1
 export MQSCTOPDIR=$2
 export HASHDIR=$3
 
+# Should match the MQ print format in the containr to make log parsing easier
+DATE_COMMAND='date -u +%Y-%m-%dT%H:%M:%SZ'
+
 if [ "$QMNAME" == "" ]; then
-   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: No QM name specified - runmqsc may not run unless a default QM is available"
+   echo "`${DATE_COMMAND}` update-mqsc.sh: No QM name specified - runmqsc may not run unless a default QM is available"
 fi 
 if [ "$MQSCTOPDIR" == "" ]; then
    export MQSCTOPDIR=/dynamic-mqsc
-   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
+   echo "`${DATE_COMMAND}` update-mqsc.sh: No MQSC top-level directory specified - will use ${MQSCTOPDIR} as a default"
 fi 
 if [ "$HASHDIR" == "" ]; then
    export HASHDIR=/mnt/mqm/data/mqsc-hashes/${QMNAME}
-   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: No hash directory specified - will use ${HASHDIR} as a default"
+   echo "`${DATE_COMMAND}` update-mqsc.sh: No hash directory specified - will use ${HASHDIR} as a default"
 fi 
-echo "update-mqsc `date '+%Y%m%d%H%M%S'`: starting; QM name $QMNAME + MQSC top directory ${MQSCTOPDIR} + hash directory ${HASHDIR}"
+echo "`${DATE_COMMAND}` update-mqsc.sh: starting; QM name $QMNAME + MQSC top directory ${MQSCTOPDIR} + hash directory ${HASHDIR}"
 mkdir -p ${HASHDIR}
 
 firstTimeThrough=1
@@ -58,16 +61,16 @@ while true; do
 	previousHash=$(cat ${hashFullPath} 2>/dev/null)
 	#echo "Found MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	if [ "$previousHash" == "" ]; then
-	   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Found new MQSC file ${mqscFile} ${hashFullPath} ${currentHash}"
+	   echo "`${DATE_COMMAND}` update-mqsc.sh: Found new MQSC file ${mqscFile} ${hashFullPath} ${currentHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
 	elif [ "$previousHash" != "$currentHash" ]; then
-	   echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
+	   echo "`${DATE_COMMAND}` update-mqsc.sh: Found changed MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	   runmqsc $QMNAME < ${mqscFile}
 	   echo ${currentHash} > ${hashFullPath}
 	else
 	    if [ "$firstTimeThrough" == "1" ]; then
-		echo "update-mqsc `date '+%Y%m%d%H%M%S'`: Unchanged MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
+		echo "`${DATE_COMMAND}` update-mqsc.sh: Unchanged MQSC file ${mqscFile} ${hashFullPath} ${currentHash} ${previousHash}"
 	    fi
 	fi
     done
