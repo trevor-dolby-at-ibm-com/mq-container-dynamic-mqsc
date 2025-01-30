@@ -1,2 +1,8 @@
 
+# Creates a MQ Service that calls the /mqsc-script/update-mqsc.sh script mounted to the container
+# Passes 'test' as name of the QueueManager(QM).  Can be left blank if a default QM is specified.
+#
+# NOTE: On Kubernetes/OpenShift, Pod name is not the same as QM Name. Running dspmq inside the mq 
+# pod will show QMNAME. Alternatively, can also be found inide spec.queueManager.name 
+
 DEFINE SERVICE(APPLY_MQSC) CONTROL(QMGR) SERVTYPE(SERVER) STARTCMD('/mqsc-script/update-mqsc.sh') STARTARG('test') STOPCMD('/mqsc-script/dummy-stop.sh') STOPARG('') STDOUT('/proc/1/fd/1') STDERR('/proc/1/fd/2') REPLACE
