@@ -2,7 +2,11 @@
 Dynamic application of MQSC scripts in a running container
 
 Based on https://github.com/ibm-messaging/mq-gitops-samples/blob/main/queue-manager-deployment/components/scripts/start-mqsc.sh by Martin Evans, this repo
-contains a script that will monitor multiple files and preserver checksums across restarts so the files are only applied when they are changed.
+contains a script that will monitor multiple files and preserve checksums across restarts so the files are only applied when they are changed:
+
+
+![overview-light](/pictures/overview-light.png#gh-light-mode-only)![overview-dark](/pictures/overview-dark.png#gh-dark-mode-only)
+
 
 ## Setup
 

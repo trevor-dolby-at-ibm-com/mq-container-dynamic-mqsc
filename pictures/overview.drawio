@@ -1,0 +1,84 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36">
+  <diagram name="Page-1" id="Gumlhk3xKF0sL7-S7Mnc">
+    <mxGraphModel dx="1077" dy="-358" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NH5-podmmCzhYhdcFgaM-33" parent="1" style="shape=mxgraph.ibm.box;prType=classic;fontStyle=0;verticalAlign=top;align=left;spacingLeft=32;spacingTop=4;fillColor=default;rounded=0;whiteSpace=wrap;html=1;strokeColor=#6C8EBF;strokeWidth=2;dashed=0;container=1;spacing=-4;collapsible=0;expand=0;recursiveResize=0;" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;MQ QueueManager container&lt;/span&gt;" vertex="1">
+          <mxGeometry height="230" width="339.5" x="330" y="1210" as="geometry" />
+        </mxCell>
+        <mxCell id="NH5-podmmCzhYhdcFgaM-34" parent="NH5-podmmCzhYhdcFgaM-33" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=light-dark(#000000,#000000);gradientColor=none;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;TESTQM&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="132.75" x="30" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-6" edge="1" parent="NH5-podmmCzhYhdcFgaM-33" source="smiGrTX5f5DMT6HNkt6x-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="NH5-podmmCzhYhdcFgaM-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-4" parent="NH5-podmmCzhYhdcFgaM-33" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" value="update-mqsc.sh" vertex="1">
+          <mxGeometry height="40" width="130" x="52.25" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-9" parent="NH5-podmmCzhYhdcFgaM-33" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#FF8000;perimeterSpacing=0;spacingLeft=7;strokeWidth=3;dashed=1;dashPattern=1 1;" value="&lt;h3 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-weight: normal; font-size: 16px;&quot;&gt;Script calls runmqsc for changed or new MQSC files&lt;/font&gt;&lt;/h3&gt;" vertex="1">
+          <mxGeometry height="90" width="130" x="200" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-5" edge="1" parent="1" source="smiGrTX5f5DMT6HNkt6x-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="smiGrTX5f5DMT6HNkt6x-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-2" parent="1" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;ConfigMap&lt;/font&gt;" vertex="1">
+          <mxGeometry height="160" width="140" x="120" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-1" parent="smiGrTX5f5DMT6HNkt6x-2" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;" value="example1.mqsc" vertex="1">
+          <mxGeometry height="50" width="100" x="20" y="35" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-3" parent="smiGrTX5f5DMT6HNkt6x-2" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.document2;whiteSpace=wrap;size=0.25;" value="example2.mqsc" vertex="1">
+          <mxGeometry height="50" width="100" x="20" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="NH5-podmmCzhYhdcFgaM-36" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontSize=11;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;font style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); font-size: 13px;&quot;&gt;PVC (/mnt/mqm/data//mqsc-hashes)&lt;/font&gt;" vertex="1">
+          <mxGeometry height="70" width="270" x="382.25" y="1540" as="geometry" />
+        </mxCell>
+        <mxCell id="NH5-podmmCzhYhdcFgaM-37" parent="NH5-podmmCzhYhdcFgaM-36" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;font style=&quot;color: light-dark(rgb(0, 153, 0), rgb(153, 255, 153));&quot;&gt;hash-example-mqsc-files-example1.mqsc&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="270" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="NH5-podmmCzhYhdcFgaM-38" parent="NH5-podmmCzhYhdcFgaM-36" style="text;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontSize=11;" value="&lt;font style=&quot;color: light-dark(rgb(0, 153, 0), rgb(153, 255, 153));&quot;&gt;hash-example-mqsc-files-example2.mqsc&lt;/font&gt;" vertex="1">
+          <mxGeometry height="20" width="270" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NH5-podmmCzhYhdcFgaM-35" edge="1" parent="1" source="smiGrTX5f5DMT6HNkt6x-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.198;entryY=0.01;entryDx=0;entryDy=0;entryPerimeter=0;" target="NH5-podmmCzhYhdcFgaM-36" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="1530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-7" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#FF8000;perimeterSpacing=0;spacingLeft=7;strokeWidth=3;dashed=1;dashPattern=1 1;" value="&lt;h3 style=&quot;margin-top: 0px;&quot;&gt;&lt;font style=&quot;font-weight: normal; font-size: 16px;&quot;&gt;ConfigMap contains MQSC files that can be changed dynamically&lt;/font&gt;&lt;/h3&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="120" y="1220" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-8" edge="1" parent="1" source="smiGrTX5f5DMT6HNkt6x-7" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontColor=#00FF00;strokeColor=#FF8000;strokeWidth=3;dashed=1;dashPattern=1 1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="smiGrTX5f5DMT6HNkt6x-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="301.4" y="1757" as="sourcePoint" />
+            <mxPoint x="185" y="1270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-10" edge="1" parent="1" source="smiGrTX5f5DMT6HNkt6x-9" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#00FF00;strokeColor=#FF8000;strokeWidth=3;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="301.4" y="2117" as="sourcePoint" />
+            <mxPoint x="450" y="1370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-11" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#FF8000;perimeterSpacing=0;spacingLeft=7;strokeWidth=3;dashed=1;dashPattern=1 1;" value="&lt;h3 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;font-size: 16px; font-weight: 400;&quot;&gt;MQSC file hashes stored in PVC to enable change detection&lt;/span&gt;&lt;/h3&gt;" vertex="1">
+          <mxGeometry height="70" width="200" x="469.5" y="1460" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-12" edge="1" parent="1" source="smiGrTX5f5DMT6HNkt6x-11" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontColor=#00FF00;strokeColor=#FF8000;strokeWidth=3;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-58.60000000000002" y="2367" as="sourcePoint" />
+            <mxPoint x="440" y="1490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-13" parent="1" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#FF8000;perimeterSpacing=0;spacingLeft=7;strokeWidth=3;dashed=1;dashPattern=1 1;" value="&lt;h3 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;font-size: 16px; font-weight: 400;&quot;&gt;Use of QM PVC ensures MI-safe hash storage but location could be /tmp for transient hash storage.&lt;/span&gt;&lt;/h3&gt;" vertex="1">
+          <mxGeometry height="90" width="210" x="120" y="1510" as="geometry" />
+        </mxCell>
+        <mxCell id="smiGrTX5f5DMT6HNkt6x-14" edge="1" parent="1" source="smiGrTX5f5DMT6HNkt6x-13" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontColor=#00FF00;strokeColor=#FF8000;strokeWidth=3;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-408.6" y="2522" as="sourcePoint" />
+            <mxPoint x="376" y="1555" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
