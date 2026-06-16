@@ -55,21 +55,21 @@
 #
 # A trimmed example startup looks as follows:
 #
-# 2025-01-20T16:24:23.150Z /mqsc-script/update-mqsc.sh: No hash directory specified - will use /mnt/mqm/data/mqsc-hashes/test as a default
-# 2025-01-20T16:24:23.162Z /mqsc-script/update-mqsc.sh: starting; QM name test + MQSC top directory /dynamic-mqsc + hash directory /mnt/mqm/data/mqsc-hashes/test
-# 2025-01-20T16:24:23.345Z /mqsc-script/update-mqsc.sh: Unchanged MQSC file /dynamic-mqsc/example-mqsc-files/example2.mqsc (hash info /mnt/mqm/data/mqsc-hashes/test/hash-example-mqsc-files-example2.mqsc 530e2c52f9c3547c52cd19570b9b597dd2fcf3b07ed6f8b7553323ac5f8dea32 530e2c52f9c3547c52cd19570b9b597dd2fcf3b07ed6f8b7553323ac5f8dea32)
+# 2025-01-20T16:24:23.150Z /mqsc-script/update-mqsc.sh: No hash directory specified - will use /mnt/mqm/data/mqsc-hashes/TESTQM as a default
+# 2025-01-20T16:24:23.162Z /mqsc-script/update-mqsc.sh: starting; QM name TESTQM + MQSC top directory /dynamic-mqsc + hash directory /mnt/mqm/data/mqsc-hashes/TESTQM
+# 2025-01-20T16:24:23.345Z /mqsc-script/update-mqsc.sh: Unchanged MQSC file /dynamic-mqsc/example-mqsc-files/example2.mqsc (hash info /mnt/mqm/data/mqsc-hashes/TESTQM/hash-example-mqsc-files-example2.mqsc 530e2c52f9c3547c52cd19570b9b597dd2fcf3b07ed6f8b7553323ac5f8dea32 530e2c52f9c3547c52cd19570b9b597dd2fcf3b07ed6f8b7553323ac5f8dea32)
 # 2025-01-20T16:24:23.044Z AMQ9722W: Plain text communication is enabled.
 # 2025-01-20T16:24:23.077Z AMQ5026I: The listener 'SYSTEM.LISTENER.TCP.1' has started. ProcessId(152). [ArithInsert1(152), CommentInsert1(SYSTEM.LISTENER.TCP.1)]
 # 2025-01-20T16:24:23.092Z AMQ5028I: The Server 'APPLY_MQSC' has started. ProcessId(154). [ArithInsert1(154), CommentInsert1(APPLY_MQSC)]
-# 2025-01-20T16:24:23.265Z AMQ5806I: Queued Publish/Subscribe Daemon started for queue manager test. [CommentInsert1(test)]
-# 2025-01-20T16:24:23.376Z /mqsc-script/update-mqsc.sh: Unchanged MQSC file /dynamic-mqsc/example-mqsc-files/example1.mqsc (hash info /mnt/mqm/data/mqsc-hashes/test/hash-example-mqsc-files-example1.mqsc 9a80bf90eedfcce35b04a26232333f03e8df677195908e505c942b9aafb6d49c 9a80bf90eedfcce35b04a26232333f03e8df677195908e505c942b9aafb6d49c)
+# 2025-01-20T16:24:23.265Z AMQ5806I: Queued Publish/Subscribe Daemon started for queue manager TESTQM. [CommentInsert1(TESTQM)]
+# 2025-01-20T16:24:23.376Z /mqsc-script/update-mqsc.sh: Unchanged MQSC file /dynamic-mqsc/example-mqsc-files/example1.mqsc (hash info /mnt/mqm/data/mqsc-hashes/TESTQM/hash-example-mqsc-files-example1.mqsc 9a80bf90eedfcce35b04a26232333f03e8df677195908e505c942b9aafb6d49c 9a80bf90eedfcce35b04a26232333f03e8df677195908e505c942b9aafb6d49c)
 #
 # When changes are detected, the output includes the runmqsc output:
 # 
-# 2025-01-20T16:27:14.015Z /mqsc-script/update-mqsc.sh: Found changed MQSC file /dynamic-mqsc/example-mqsc-files/example1.mqsc (hash info /mnt/mqm/data/mqsc-hashes/test/hash-example-mqsc-files-example1.mqsc 549f616e292cf0d09c0766de9aabb919cd56a990c7d16cd99b4e51a0a975f03a 9a80bf90eedfcce35b04a26232333f03e8df677195908e505c942b9aafb6d49c)
+# 2025-01-20T16:27:14.015Z /mqsc-script/update-mqsc.sh: Found changed MQSC file /dynamic-mqsc/example-mqsc-files/example1.mqsc (hash info /mnt/mqm/data/mqsc-hashes/TESTQM/hash-example-mqsc-files-example1.mqsc 549f616e292cf0d09c0766de9aabb919cd56a990c7d16cd99b4e51a0a975f03a 9a80bf90eedfcce35b04a26232333f03e8df677195908e505c942b9aafb6d49c)
 # 2025-01-20T16:27:14.020Z /mqsc-script/update-mqsc.sh: runmqsc output:
 # 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh: 5724-H72 (C) Copyright IBM Corp. 1994, 2024.
-# 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh: Starting MQSC for queue manager test.
+# 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh: Starting MQSC for queue manager TESTQM.
 # 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh:
 # 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh:
 # 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh: 1 : DEFINE QL(EXAMPLE1) REPLACE
@@ -78,7 +78,13 @@
 # 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh: No commands have a syntax error.
 # 2025-01-20T16:27:14.027Z /mqsc-script/update-mqsc.sh: All valid MQSC commands were processed.
 #
-
+# Note that creating the config map with this script from a Windows system may
+# lead to errors of the form:
+#
+# sh-5.1$ /mqsc-script/dummy-stop.sh
+# sh: /mqsc-script/dummy-stop.sh: /bin/bash^M: bad interpreter: No such file or directory
+#
+# and this can be resolved using commands like   sed -i 's/\r//g'
 
 export QMNAME=$1
 export MQSCTOPDIR=$2
